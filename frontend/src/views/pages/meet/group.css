@@ -1,0 +1,97 @@
+.groups_group_card {
+    background-color: var(--theme-two);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative; /* to keep groups_group_card_footing fixed at the bottom */
+    height: 200px;
+}
+
+.groups_group_card_heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.groups_group_card_heading .group_card_name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 80%;
+}
+
+.groups_group_card_heading .group_card_id {
+    background-color: var(--theme-three);
+    color: var(--theme-two);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 2px 0;
+    font-weight: 800;
+}
+
+.groups_group_card_body {
+    margin: 1rem 0;
+}
+
+.groups_group_card_footing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 1rem;
+    align-items: center;
+}
+
+.groups_group_card_footing .group_card_category_support,
+.groups_group_card_footing .group_card_category_counsel {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--theme-two);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.groups_group_card_footing .group_card_category_support {
+    background-color: #C689C6;
+}
+
+.groups_group_card_footing .group_card_category_counsel {
+    background-color: #91BFBC;
+}
+
+.groups_group_card_footing .group_card_view_button {
+    outline: none !important;
+    border: 1px solid var(--theme-three) !important;
+    box-shadow: none !important;
+    background-color: var(--theme-three);
+    font-weight: 700;
+}
+
+.groups_group_card_footing .group_card_view_button:hover {
+    outline: none !important;
+    border: 1px solid var(--theme-three) !important;
+    box-shadow: none !important;
+    background-color: var(--theme-two);
+    color: var(--theme-three);
+    font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+    .groups_group_card {
+        background-color: var(--theme-two);
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 10px;
+        padding: 1rem;
+        position: relative; /* to keep groups_group_card_footing fixed at the bottom */
+        height: 200px;
+        /* width: 50vw; */
+    }
+
+    .no-display-small {
+        display: none;
+    }
+}

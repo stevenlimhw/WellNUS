@@ -1,0 +1,75 @@
+.profile_button {
+    background-color: var(--theme-three);
+    border: 1px solid var(--theme-three);
+    padding: 0 1rem !important;
+    border-radius: 10px;
+}
+
+.profile_button:hover,
+.profile_button:focus {
+    background-color: var(--theme-three);
+    border: 1px solid var(--theme-two) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 10px;
+}
+
+.profile_button_name {
+    margin-top: 1rem;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    text-decoration: none;
+    align-items: center;
+}
+
+.profile_name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--theme-one);
+}
+
+.profile_detail {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.profile_content {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile_content_left {
+    width: 35%;
+    height: 200px;
+    border: 1px black solid;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.profile_content_right {
+    width: 65%;
+    padding-left: 1rem;
+}
+
+.profile_hobbies {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile_value {
+    background-color: var(--theme-three);
+    color: var(--theme-two);
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.layout_heading_button {
+    margin: 0 !important;
+}

@@ -1,0 +1,29 @@
+.centre_div {
+    display: flex;
+    justify-content: center;
+}
+
+.counselRequest_topics {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    column-gap: 4%;
+    row-gap: 8%;
+}
+
+.counselRequest_topic {
+    overflow: hidden;
+    border: 1px solid var(--theme-three);
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.counselModal_textarea {
+    width: 100%;
+}
+
+.button_text_wrapper {
+    width: 250px;
+    font-size: 10px;
+}

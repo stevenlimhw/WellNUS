@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Join Requests</title>
+    </head>
+
+    <body>
+        <h1>Join Request</h1>
+        <a href="/testing">Go back</a>
+        <div>
+            <a href="/testing/join?request=SENT">SENT</a>
+            <a href="/testing/join?request=RECEIVED">RECEIVED</a>
+            <a href="/testing/join">BOTH</a>
+        </div>
+        {{ range .loadedJoinRequests }}
+            <div>
+                <div>JoinRequestID: {{ .JoinRequest.ID }}</div>
+                <div>UserID: {{ .JoinRequest.UserID }}</div>
+                <div>GroupID: {{ .JoinRequest.GroupID }}</div>
+                <div>Sent By: {{ .User.FirstName }}</div>
+                <div>To Group: {{ .Group.GroupName }}</div>
+                <a href='/testing/join/{{ .JoinRequest.ID }}'>View</a>
+            </div>
+            <br>
+        {{ end }}
+        <br>
+    </body>
+</html>

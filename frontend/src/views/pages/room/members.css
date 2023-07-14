@@ -1,0 +1,18 @@
+.members {
+    display: flex;
+    flex-direction: column;
+    color: var(--theme-three);
+    font-weight: 800;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.member {
+    background-color: var(--theme-three);
+    color: var(--theme-one);
+    padding: 0.1rem;
+    margin: 1rem 0;
+    width: 10rem;
+    border-radius: 5px;
+    padding-left: 1rem;
+}

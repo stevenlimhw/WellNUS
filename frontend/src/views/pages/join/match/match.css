@@ -1,0 +1,35 @@
+.match {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 1rem;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.match_submit_btn {
+    margin: 2rem 0 !important;
+}
+
+.match_container {
+    padding: 0;
+    padding-right: 4rem !important;
+}
+
+.match_col_left {
+    background-color: var(--theme-three);
+    height: 100vh;
+}
+
+.match_col_right {
+    height: 100vh;
+    background-color: var(--theme-three);
+}
+
+select {
+    margin: 1rem 0;
+ }
+
+ .match_form:focus {
+    border: 1px solid var(--theme-three);
+    outline: none;
+    box-shadow: none;
+ }

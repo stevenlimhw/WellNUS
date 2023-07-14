@@ -1,0 +1,22 @@
+.form_field_group {
+    border-radius: 10px;
+    width: 97% !important;
+}
+
+.form_field_control {
+    padding: 0.6rem;
+    margin-top: 10px !important;
+}
+
+.form_select_control {
+    padding: 0.6rem;
+    border-radius: 6px;
+    width: 97%;
+    margin: 0 !important;
+    margin-top: 10px !important;
+}
+
+.alert_dismissable {
+    width: 100%;
+    margin-top: 1.2rem;
+}

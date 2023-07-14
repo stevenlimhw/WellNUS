@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS wn_counsel_request (
+    user_id BIGINT REFERENCES wn_user(id) ON DELETE CASCADE,
+    nickname TEXT NOT NULL,
+    details TEXT NOT NULL,
+    topics TEXT[] NOT NULL,
+    last_updated TIMESTAMPTZ NOT NULL,
+    unique(user_id),
+    check(COALESCE(array_length(topics, 1), 0) > 0),
+    check(topics <@ ARRAY[
+        'Anxiety', 
+        'OffMyChest', 
+        'SelfHarm', 
+        'Depression', 
+        'SelfEsteem', 
+        'Stress', 
+        'Casual', 
+        'Therapy', 
+        'BadHabits', 
+        'Rehabilitation',
+        'Addiction',
+        'Family',
+        'Trauma',
+        'Career',
+        'Abandonment',
+        'Relationships',
+        'Identity',
+        'LGBT'])
+)

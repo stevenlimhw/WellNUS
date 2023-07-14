@@ -1,0 +1,22 @@
+.tooltip-arrow {
+    display: none !important;
+}
+
+.eventTable-btn,
+.eventTable-btn:hover,
+.eventTable-btn:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    border: 1px solid var(--theme-three);
+}
+
+.eventTable-btn {
+    background-color: var(--theme-three);
+    color: var(--theme-two)
+}
+
+.eventTable-btn:hover,
+.eventTable-btn:focus {
+    background-color: var(--theme-two);
+    color: var(--theme-three);
+}

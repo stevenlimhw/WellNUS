@@ -1,0 +1,135 @@
+.messages_wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 75vh;
+    width: 100%;
+}
+
+/* Message from others */
+
+.message_wrapper {
+    background-color: #D3D3D3;
+    align-self: flex-start;
+    width: 70%;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+.message_sender {
+    font-weight: 600;
+    color: var(--theme-one);
+}
+
+.message_content {
+    font-size: 1.1rem;
+    color: var(--theme-one);
+}
+
+.message_time {
+    text-align: end;
+    color: var(--theme-one);
+}
+
+/* Message from user */
+
+.message_wrapper_self {
+    align-self: flex-end;
+    background-color: var(--theme-three);
+    width: 70%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.message_sender_self {
+    font-weight: 600;
+    color: var(--theme-one);
+}
+
+.message_content_self {
+    font-size: 1.1rem;
+    color: var(--theme-one);
+}
+
+.message_time_self {
+    text-align: end;
+    color: var(--theme-one);
+}
+
+/* Chat Input */
+
+.chatinput_wrapper {
+    margin: 2rem 0;
+    /* border: 1px red solid; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 40px;
+    padding: 5px;
+}
+
+.chatinput_input {
+    height: 3rem;
+    width: 90%;
+    background-color: var(--theme-two);
+    /* border: 1px solid #D3D3D3; */
+    border: none !important;
+    border-radius: 40px;
+    padding-left: 2rem;
+}
+
+.chatinput_input:hover {
+    outline: none !important;
+}
+
+.chatinput_input:focus {
+    outline: none !important;
+}
+
+.chatinput_send {
+    padding-top: 10px;
+    padding-right: 14px;
+    background-color: var(--theme-three);
+    color: var(--theme-one);
+    border: 1px solid var(--theme-three);
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.chatinput_send:hover {
+    background-color: var(--theme-two);
+    border: 1px solid var(--theme-one);
+}
+
+.chatinput_send:focus {
+    background-color: var(--theme-three);
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+/* Chat Notification */
+.chat-notif {
+    background: none;
+    color: var(--theme-two);
+}
+
+.chat-notif-bold {
+    font-weight: bold;
+    color: var(--theme-three);
+}
+
+.chat-notif-close {
+    background: none;
+    color: var(--theme-four);
+}
+
+@media (max-width: 1100px) {
+    .messages_wrapper {
+        height: 60vh;
+    }
+}

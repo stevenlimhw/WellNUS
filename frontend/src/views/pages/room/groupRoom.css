@@ -1,0 +1,131 @@
+.groupRoom {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    height: 100%;
+}
+
+.groupRoom_left {
+    padding: 2rem;
+    background-color: var(--theme-one);
+    width: 20vw;
+}
+
+.groupRoom_right {
+    background-color: var(--theme-two);
+    width: 80vw;
+    padding-left: 4rem;
+    padding-right: 8rem;
+    padding-top: 4rem;
+}
+
+.groupRoom_title {
+    color: var(--theme-three);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 35px;
+}
+
+.groupRoom_detail {
+    color: var(--theme-three);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.groupRoom_category {
+    background-color: var(--theme-three);
+    color: var(--theme-one);
+    font-weight: 600;
+    margin: 1rem 0;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 0.2rem 1rem;
+}
+
+.groupRoom_button_exit {
+    height: fit-content;
+    background-color: var(--theme-three);
+    color: var(--theme-one);
+    border: 1px solid var(--theme-three);
+    font-weight: 600;
+    width: fit-content;
+}
+
+.groupRoom_button_exit:hover,
+.groupRoom_button_exit:focus {
+    background-color: var(--theme-one);
+    color: var(--theme-three);
+    border: 1px solid var(--theme-three);
+}
+
+.groupRoom_button_delete {
+    height: fit-content;
+    width: fit-content;
+    background-color: var(--theme-three);
+    color: var(--theme-one);
+    border: 1px solid var(--theme-three);
+    font-weight: 600;
+}
+
+.groupRoom_button_delete:hover,
+.groupRoom_button_delete:focus {
+    background-color: red;
+    color: var(--theme-two);
+    border: 1px solid red;
+}
+
+.groupRoom_buttons_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (max-width: 1100px) {
+    .groupRoom {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
+
+    .groupRoom_left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0.8rem 0.5rem;
+    }
+
+    .groupRoom_right {
+        height: auto;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .no-display {
+        display: none;
+    }
+
+    .groupRoom_title {
+        font-size: 1.5rem;
+        line-height: 35px;
+    }
+
+    .groupDetails {
+        max-height: 20vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    .groupRoom_buttons_wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: right;
+    }
+}

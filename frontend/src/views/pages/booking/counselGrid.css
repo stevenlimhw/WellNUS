@@ -1,0 +1,98 @@
+.counsellor_card {
+    background-color: var(--theme-two);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative; /* to keep groups_group_card_footing fixed at the bottom */
+    height: fit-content;
+}
+
+.counsellor_card_heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.counsellor_name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 80%;
+}
+
+.counsellor_male {
+    background-color: lightblue;
+    color: var(--theme-two);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 2px 0;
+    font-weight: 800;
+}
+
+.counsellor_female {
+    background-color: lightpink;
+    color: var(--theme-two);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 2px 0;
+    font-weight: 800;
+}
+
+.counsellor_counsellor {
+    background-color: #91BFBC;
+    width: fit-content;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--theme-two);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.counsellor_volunteer {
+    background-color: #C689C6;
+    width: fit-content;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--theme-two);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.counsellor_specialities {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    column-gap: 4%;
+    row-gap: 8%;
+}
+
+.counsellor_speciality {
+    border: 1px solid var(--theme-three);
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bookingModal_request_button,
+.bookingModal_request_button:hover,
+.bookingModal_request_button:focus {
+    outline: none !important;
+    border: 1px solid var(--theme-three);
+    box-shadow: none !important;
+}
+
+.bookingModal_request_button {
+    margin-top: 1rem;
+    background-color: var(--theme-three);
+}
+
+.bookingModal_request_button:hover,
+.bookingModal_request_button:focus {
+    background-color: var(--theme-two);
+    border: 1px solid var(--theme-three);
+    color: var(--theme-three)
+}

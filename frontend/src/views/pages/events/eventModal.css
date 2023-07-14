@@ -1,0 +1,7 @@
+.event-owner {
+    border: 1px solid var(--theme-three);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}

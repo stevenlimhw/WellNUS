@@ -1,0 +1,15 @@
+.bookingRequest_button {
+    border: 1px solid var(--theme-three) !important;
+    background-color: var(--theme-three) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.bookingRequest_button:hover,
+.bookingRequest_button:active {
+    border: 1px solid var(--theme-three) !important;
+    background-color: var(--theme-two) !important;
+    color: var(--theme-three) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

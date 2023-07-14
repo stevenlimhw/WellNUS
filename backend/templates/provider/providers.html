@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Providers</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                const createProviderSetting = document.getElementById("createProviderSetting")
+                const deleteProviderSetting = document.getElementById("delete")
+                const backendURL = {{.backendURL}}
+
+                createProviderSetting.onsubmit = function(e) {
+                    e.preventDefault()
+                    const intro = e.target["intro"].value
+                    const topics = [...e.target["topics"].elements].filter(x => x.checked).map(x => x.value)
+                    const body = JSON.stringify({ intro, topics })
+                    fetch(backendURL + "/provider", {
+                        method: 'POST',
+                        headers : {
+                            'Content-Type' : 'application/json',
+                        },
+                        body
+                    })
+                    .then(res => console.log(res.json()))
+                    .catch(err => console.log(err))
+                }
+
+                deleteProviderSetting.onclick = function(e) {
+                    fetch(backendURL + "/provider", {
+                        method: 'DELETE',
+                        headers : {
+                            'Content-Type' : 'application/json',
+                        }
+                    })
+                    .then(res => console.log(res.json()))
+                    .catch(err => console.log(err))
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Providers</h1>
+        <div>
+            <a href="/testing">Go Back</a>
+        </div>
+        <div>
+            <h2>My Provider Setting</h2>
+            <div> UserID: {{ .providerSetting.UserID}} </div>
+            <div> Intro: {{ .providerSetting.Intro }} </div>
+            <div> Topics: {{ .providerSetting.Topics}} </div>
+        </div>
+        <div>
+            <h2>Create / Update Provider Setting</h2>
+            <form id="createProviderSetting">
+                <div>
+                    <label for="intro">Intro: </label>
+                    <textarea id="intro"></textarea>
+                </div>
+                <fieldset name="topics">Topics: 
+                    <input type="checkbox" name='topic' value='Anxiety'>
+                        <label for='Anxiety'>Anxiety</label>
+                    <input type="checkbox" name='topic' value='OffMyChest'>
+                        <label for='OffMyChest'>OffMyChest</label>
+                    <input type="checkbox" name='topic' value='SelfHarm'>
+                        <label for='SelfHarm'>SelfHarm</label>
+                    <input type="checkbox" name='topic' value='Depression'>
+                        <label for='Depression'>Depression</label>
+                    <input type="checkbox" name='topic' value='SelfEsteem'>
+                        <label for='SelfEsteem'>SelfEsteem</label>
+                    <input type="checkbox" name='topic' value='Stress'>
+                        <label for='Stress'>Stress</label>
+                    <input type="checkbox" name='topic' value='Casual'>
+                        <label for='Casual'>Casual</label>
+                    <input type="checkbox" name='topic' value='Therapy'>
+                        <label for='Therapy'>Therapy</label>
+                    <input type="checkbox" name='topic' value='BadHabits'>
+                        <label for='BadHabits'>BadHabits</label>
+                    <input type="checkbox" name='topic' value='Rehabilitation'>
+                        <label for='Rehabilitation'>Rehabilitation</label>
+                    <input type="checkbox" name='topic' value='Addiction'>
+                        <label for='Addiction'>Addiction</label>
+                    <input type="checkbox" name='topic' value='Family'>
+                        <label for='Family'>Family</label>
+                    <input type="checkbox" name='topic' value='Trauma'>
+                        <label for='Trauma'>Trauma</label>
+                    <input type="checkbox" name='topic' value='Career'>
+                        <label for='Career'>Career</label>
+                    <input type="checkbox" name='topic' value='Abandonment'>
+                        <label for='Abandonment'>Abandonment</label>
+                    <input type="checkbox" name='topic' value='Relationships'>
+                        <label for='Relationships'>Relationships</label>
+                    <input type="checkbox" name='topic' value='Identity'>
+                        <label for='Identity'>Identity</label>
+                    <input type="checkbox" name='topic' value='LGBT'>
+                        <label for='LGBT'>LGBT</label>
+                </fieldset>
+                <input type="submit" value="Add / Update provider setting" />
+            </form>
+            <button id="delete">Delete Provider Setting</button>
+        </div>
+        <br>
+        <div>
+            <h2>Filter by topics</h2>
+            <form id="topicSelect">
+                <fieldset name="topic">Topics
+                    <input type="checkbox" name='topic' value='Anxiety'>
+                        <label for='Anxiety'>Anxiety</label>
+                    <input type="checkbox" name='topic' value='OffMyChest'>
+                        <label for='OffMyChest'>OffMyChest</label>
+                    <input type="checkbox" name='topic' value='SelfHarm'>
+                        <label for='SelfHarm'>SelfHarm</label>
+                    <input type="checkbox" name='topic' value='Depression'>
+                        <label for='Depression'>Depression</label>
+                    <input type="checkbox" name='topic' value='SelfEsteem'>
+                        <label for='SelfEsteem'>SelfEsteem</label>
+                    <input type="checkbox" name='topic' value='Stress'>
+                        <label for='Stress'>Stress</label>
+                    <input type="checkbox" name='topic' value='Casual'>
+                        <label for='Casual'>Casual</label>
+                    <input type="checkbox" name='topic' value='Therapy'>
+                        <label for='Therapy'>Therapy</label>
+                    <input type="checkbox" name='topic' value='BadHabits'>
+                        <label for='BadHabits'>BadHabits</label>
+                    <input type="checkbox" name='topic' value='Rehabilitation'>
+                        <label for='Rehabilitation'>Rehabilitation</label>
+                    <input type="checkbox" name='topic' value='Addiction'>
+                        <label for='Addiction'>Addiction</label>
+                    <input type="checkbox" name='topic' value='Family'>
+                        <label for='Family'>Family</label>
+                    <input type="checkbox" name='topic' value='Trauma'>
+                        <label for='Trauma'>Trauma</label>
+                    <input type="checkbox" name='topic' value='Career'>
+                        <label for='Career'>Career</label>
+                    <input type="checkbox" name='topic' value='Abandonment'>
+                        <label for='Abandonment'>Abandonment</label>
+                    <input type="checkbox" name='topic' value='Relationships'>
+                        <label for='Relationships'>Relationships</label>
+                    <input type="checkbox" name='topic' value='Identity'>
+                        <label for='Identity'>Identity</label>
+                    <input type="checkbox" name='topic' value='LGBT'>
+                        <label for='LGBT'>LGBT</label>
+                </fieldset>
+                <input type="submit" value="Filter Topics" />
+            </form>
+            {{ range .providers }}
+                <div>
+                    <div> ID: {{.User.ID}}</div>
+                    <div> FirstName: {{.User.FirstName}}</div>
+                    <div> LastName: {{.User.LastName}}</div>
+                    <div> Gender: {{.User.Gender}}</div>
+                    <div> Faculty: {{.User.Faculty}}</div>
+                    <div> Email: {{.User.Email}}</div>
+                    <div> UserRole: {{.User.UserRole}}</div>
+                    <div> PasswordHash: {{.User.PasswordHash}}</div>
+                    <div> Intro: {{ .Setting.Intro }} </div>
+                    <div> Topics: {{ .Setting.Topics}} </div>
+                    <a href="/testing/provider/{{ .User.ID }}">View</a>
+                </div>
+            {{ end }}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Chat</title>
+        <script type="text/javascript">
+            window.onload = function () {
+                const loadLimit = 30
+                const groupID = window.location.pathname.match(/[0-9][0-9]*/).map(parseInt)[0]
+                const form = document.getElementById("form")
+                const msg = document.getElementById("msg")
+                const log = document.getElementById("log")
+                const notif = document.getElementById("notif")
+                const statuses = document.getElementById("statuses")
+                const backendURL = {{.backendURL}}
+                const wsURL = {{.wsURL}}
+                var conn
+
+                //Helper functions
+                function appendLog(item) {
+                    var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
+                    log.appendChild(item);
+                    if (doScroll) {
+                        log.scrollTop = log.scrollHeight - log.clientHeight;
+                    }
+                }
+
+                function prependLog(...items){
+                    var curr = log.scrollHeight - log.scrollTop
+                    log.prepend(...items);
+                    log.scrollTop = log.scrollHeight - curr;
+                }
+
+                function makeMessageItem(messagePayload) {
+                    var item = document.createElement("div");
+                    item.innerText = `${messagePayload.sender_name}: ${messagePayload.message.msg}`
+                    return item
+                }
+
+                function updateStatuses(chatStatusPayload) {
+                    statuses.innerHTML = ''
+                    chatStatusPayload.sorted_in_chat_members.forEach(user => {
+                        var item = document.createElement("li")
+                        item.innerText = `${user.first_name} - in chat`
+                        statuses.appendChild(item)
+                    })
+                    chatStatusPayload.sorted_online_members.forEach(user => {
+                        var item = document.createElement("li")
+                        item.innerText = `${user.first_name} - online`
+                        statuses.appendChild(item)
+                    })
+                    chatStatusPayload.sorted_offline_members.forEach(user => {
+                        var item = document.createElement("li")
+                        item.innerText = `${user.first_name} - offline`
+                        statuses.appendChild(item)
+                    })
+                }
+
+                //Handles loading of past messages
+                var earliestTime = ""
+                const loadInterval = setInterval(() => {
+                    if (log.scrollTop == 0) {
+                        fetch(backendURL+`/message/${groupID}?latest=${earliestTime}&limit=${loadLimit}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            const { message_payloads, earliest_time } = data
+                            if (!message_payloads || message_payloads.length == 0) {
+                                clearInterval(loadInterval)
+                                return
+                            }
+                            prependLog(...message_payloads.map(makeMessageItem))
+                            earliestTime = earliest_time
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            clearInterval(loadInterval)
+                        })
+                    }
+                }, 100)
+
+                // Handle payload delivery (brains of the unit)
+                var notifTimeOut
+                function handlePayload(payload) {
+                    console.log(payload)
+                    if (payload.tag == 0) { // 0 is message
+                        if (payload.message.group_id == groupID) {
+                            appendLog(makeMessageItem(payload))
+                        } else {
+                            clearTimeout(notifTimeOut)
+                            notif.innerHTML = `New message from ${payload.sender_name} in ${payload.group_name}`
+                            notif.style.display = "inherit"
+                            notifTimeOut = setTimeout(() => notif.style.display="none", 2000)
+                        }
+                    } else if(payload.tag == 1) { // 1 is chat status
+                        updateStatuses(payload)
+                    }
+                }
+
+                // Performs websocket connection
+                if (window["WebSocket"]) {
+                    form .onsubmit = function () {
+                        if (!conn) {
+                            return false;
+                        }
+                        if (!msg.value) {
+                            return false;
+                        }
+                        conn.send(msg.value);
+                        msg.value = "";
+                        return false;
+                    };
+
+                    conn = new WebSocket(wsURL + "/ws/" + groupID);
+                    conn.onclose = function (evt) {
+                        var item = document.createElement("div");
+                        item.innerHTML = "<b>Connection closed.</b>";
+                        appendLog(item);
+                    };
+                    conn.onmessage = function (evt) {
+                        var payload = JSON.parse(evt.data)
+                        handlePayload(payload)
+                    };
+                } else {
+                    var item = document.createElement("div");
+                    item.innerHTML = "<b>Your browser does not support WebSockets.</b>";
+                    appendLog(item);
+                }
+            };
+        </script>
+        <style type="text/css">
+            #log {
+                border: 1px solid black;
+                height: 30em;
+                margin: 0;
+                padding: 0.5em 0.5em 0.5em 0.5em;
+                overflow-y: auto;
+            }
+
+            #form {
+                padding: 0 0.5em 0 0.5em;
+                margin: 0;
+                width: 100%;
+            }
+
+            #notif {
+                background-color: red;
+                color: white;
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <a href="/testing/group">Go back to groups</a>
+        <div id="notif"></div>
+        <div id="log"></div>
+        <form id="form">
+            <input type="submit" value="Send" />
+            <input type="text" id="msg" size="64" autofocus />
+        </form>
+
+        <h4>Chat Status</h4>
+        <ul id="statuses">
+        </ul>
+
+        <h2> Group {{ .groupWithUsers.Group.ID }}</h2>
+        <div>
+            <div>GroupName: {{ .groupWithUsers.Group.GroupName }}</div>
+            <div>GroupDescription: {{ .groupWithUsers.Group.GroupDescription }}</div>
+            <div>Category: {{ .groupWithUsers.Group.Category}}</div>
+            <div>OwnerID: {{ .groupWithUsers.Group.OwnerID }}</div>
+        </div>
+        <h2> Users : </h2>
+        {{ range .groupWithUsers.Users }}
+            <div>
+                <div>ID: {{.ID}}</div>
+                <div>FirstName: {{.FirstName}}</div>
+                <div>LastName: {{.LastName}}</div>
+                <div>Gender: {{.Gender}}</div>
+                <div>Faculty: {{.Faculty}}</div>
+                <div>Email: {{.Email}}</div>
+                <div>UserRole: {{.UserRole}}</div>
+                <div>PasswordHash: {{.PasswordHash}}</div>
+            </div>
+            <br>
+        {{ end }}
+    </body>
+</html>
